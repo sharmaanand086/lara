@@ -17,7 +17,7 @@ class TestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { $data = DB::table("Questions")         
+    { $data = DB::table("questions")         
           ->get();
          // dd($data);
       return view('layouts.child',['questions'=>$data]) ;
@@ -26,16 +26,22 @@ class TestController extends Controller
     public function storeForm()
     {
       $field_one = Input::get('inputval');
-    //  dd(array_sum($field_one));
+      $field_qtn = Input::get('qtn');
+         $n = array_filter($field_one, function($n){
+            return $n >= 3;
+        });
+     $res=array_intersect_key($field_qtn, $n);
+   // dd($n,$res);
       $ans = array_sum($field_one);
-      //print_r($ans);
+     // print_r($ans);
       $final = DB::table("answers")
              ->select('content') 
+             
              ->where('first','<=',$ans)  
              ->where('last','>=',$ans)      
-             ->get();  
-            // print_r($final);
-         return view('layouts.thankyou',['final'=>$final]);
+             ->get();
+     
+         return view('layouts.thankyou',['final'=>$final,'q'=>$res]);
      
     }
 
