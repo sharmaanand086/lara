@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>belief</title>
+<meta name="viewport" content="width=device-width">
+<link href="http://localhost/belief/resources/assets/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="http://localhost/belief/resources/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" type="text/css" />
+
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
+<script type="text/javascript">
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+        history.go(1);
+        alert("If You will Press back You will lose your data!")
+    };
+    </script>
+</head>
+    <body>       
+
+        <div class="container">
+            @yield('content')
+        </div>
+    </body>
+</html>

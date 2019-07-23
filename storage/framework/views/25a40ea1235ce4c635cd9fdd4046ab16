@@ -1,0 +1,22 @@
+<?php $__env->startSection('content'); ?>
+<div class="main_div" style="padding:0;" >    
+<div class="header" style="">
+  <div class="inner-header thank" style="">
+    <div class="logo">
+      <img src="http://localhost/belief/resources/assets/img/logo.png">
+    </div>
+    <p style="">username</p>
+  </div>
+</div>
+</div>
+<div class="container">
+	<div class="result">
+		  <?php foreach($final as $finalans): ?>
+		<p><?php echo e($finalans->content); ?></p>
+
+          <?php endforeach; ?> 
+	</div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

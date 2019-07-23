@@ -1,0 +1,71 @@
+<?php $__env->startSection('content'); ?>
+<div class="main_div">    
+<div class="header" style="">
+  <div class="inner-header" style="">
+    <div class="logo">
+      <img src="http://localhost/belief/resources/assets/img/logo.png">
+    </div>
+    <p style="">username</p>
+  </div>
+</div>
+<div id="wrapper" style="padding-top:40px;">
+	<?php echo Form::open(['route' => 'f.submit']); ?>
+
+   <?php foreach($questions as $user): ?>
+  <div id="content"> 
+    <div class="question_box">
+      <p class="question">       
+     <?php echo e($user->id); ?> . &nbsp;<?php echo e($user->qtn); ?> </p>
+         <div class="slidecontainer">
+          <output for="range" id="demo">0</output>
+          <input type="range" min="0" max="5" value="0" name="inputval[]">
+           
+        </div>
+    </div>
+  </div>
+  <?php endforeach; ?> 
+  <div class="submit-button">
+    <button>SUBMIT</button>
+  </div>
+  <?php echo Form::close(); ?>
+
+</div>
+</div>
+<script type="text/javascript">
+  var r = document.querySelectorAll('input[type=range]'), 
+    prefs = ['webkit-slider-runnable', 'moz-range'], 
+    styles = [], 
+    l = prefs.length,
+    n = r.length;
+
+var getTrackStyleStr = function(el, j) {
+  var str = '', 
+      min = el.min || 0, 
+      perc = (el.max) ? ~~(100*(el.value - min)/(el.max - min)) : el.value, 
+      val = perc + '% 100%';
+
+  el.previousElementSibling.textContent = el.value;
+  
+  for(var i = 0; i < l; i++) {
+    str += "input[type=range][data-rangeId='" + j + "']::-" + prefs[i] + '-track{background-size:' + val + '} ';
+  }
+  return str;
+};
+
+var setDragStyleStr = function(evt) {
+  var trackStyle = getTrackStyleStr(evt.target, this); 
+  styles[this].textContent = trackStyle;
+};
+
+for(var i = 0; i < n; i++) {
+  var s = document.createElement('style');
+  document.body.appendChild(s);
+  styles.push(s);
+  r[i].setAttribute('data-rangeId', i);
+  r[i].addEventListener('input', setDragStyleStr.bind(i));
+}
+
+</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
